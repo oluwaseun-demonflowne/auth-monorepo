@@ -8,18 +8,18 @@ import AdminPage from "./pages/Admin/AdminPage";
 import UserPage from "./pages/User/UserPage";
 
 function App() {
-    return (
-        <Routes>
-            <Route element={<Layout />}>
-                <Route path="/" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-            </Route>
-            <Route element={<AuthLayout />}>
-                <Route path="/admin" element={<AdminPage />} />
-                <Route path="/user" element={<UserPage />} />
-            </Route>
-        </Routes>
-    );
+  return (
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Route>
+      <Route element={<AuthLayout />}>
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/user" element={<UserPage />} />
+      </Route>
+    </Routes>
+  );
 }
 
 export default App;

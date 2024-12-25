@@ -19,8 +19,7 @@ const RegisterPage = () => {
                 <div className="space-y-2">
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                    className="block text-sm font-medium text-gray-700">
                     Email
                   </label>
                   <div className="relative">
@@ -40,8 +39,7 @@ const RegisterPage = () => {
                 <div className="space-y-2">
                   <label
                     htmlFor="password"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                    className="block text-sm font-medium text-gray-700">
                     Password
                   </label>
                   <div className="relative">
@@ -58,8 +56,7 @@ const RegisterPage = () => {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
-                    >
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none">
                       {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
                   </div>
@@ -67,8 +64,7 @@ const RegisterPage = () => {
                 <div className="space-y-2">
                   <label
                     htmlFor="password"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                    className="block text-sm font-medium text-gray-700">
                     Confirm Password
                   </label>
                   <div className="relative">
@@ -85,8 +81,7 @@ const RegisterPage = () => {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
-                    >
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none">
                       {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
                   </div>
@@ -94,8 +89,7 @@ const RegisterPage = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors"
-                >
+                  className="w-full bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors">
                   Sign In
                 </button>
               </div>

@@ -13,7 +13,7 @@ const Users = () => {
     const getUsers = async () => {
       try {
         const response = await axios.get("/users", {
-          signal: controller.signal,
+          signal: controller.signal
         });
         console.log(response.data);
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions

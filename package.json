@@ -9,14 +9,14 @@
     "frontend": "npm run dev -w frontend",
     "start": "concurrently \"npm run backend\" \"npm run frontend\"",
     "test:backend": "npm test -w backend",
-    "test:frontend": "npm test -w frontend"
+    "test:frontend": "npm test -w frontend",
+    "format":" npm run format -w frontend &&  npm run format -w backend"
   },
   "author": "",
   "license": "ISC",
   "workspaces": [
     "backend",
-    "frontend",
-    "packages/*"
+    "frontend"
   ],
   "devDependencies": {
     "concurrently": "^9.1.0"
