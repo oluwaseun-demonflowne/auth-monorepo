@@ -5,7 +5,7 @@ import {
   ReactNode,
   useContext
 } from "react";
-import { replace, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 type ContextAuth = {
   user: Access | null;
@@ -20,12 +20,10 @@ type ContextAuth = {
       }
   >;
   logout: () => void;
-  token: string | null;
 };
 
 const AuthContext = createContext<ContextAuth>({
   user: null,
-  token: null,
   login: async () => ({ success: false }),
   logout: () => {}
 });
@@ -46,45 +44,45 @@ type Access = Profile & { accessToken: string };
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<null | Access>(null);
-  const [token, setToken] = useState<null | string>(null);
+  // const navigate = useNavigate();
   const navigate = useNavigate();
-  //   const navigate = useNavigate();
-  //   useEffect(() => {
-  //     const validateToken = async () => {
-  //       if (!token) {
-  //         logout();
+  useEffect(() => {
+    const validateToken = async () => {
+      // if (!token) {
+      //   logout();
 
-  //         return;
-  //       }
+      //   return;
+      // }
 
-  //       try {
-  //         const response = await fetch("http://localhost:5003/api/refresh", {
-  //           method: "POST",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             Authorization: `Bearer ${token}` // Send the token in the Authorization header
-  //           }
-  //         });
+      try {
+        const response = await fetch("http://localhost:5003/api/refresh", {
+          credentials: "include"
+        });
 
-  //         if (!response.ok) {
-  //           throw new Error("Invalid token");
-  //         }
+        if (!response.ok) {
+          logout();
+          // throw new Error("Invalid token");
+        }
 
-  //         const data = await response.json();
+        const data = await response.json();
+        setUser(data);
+        navigate("/user", { replace: true });
 
-  //         if (data.user) {
-  //           setUser(data.user); // Update the user context if the token is valid
-  //         } else {
-  //           logout(); // Token is invalid, so log out the user
-  //         }
-  //       } catch (error) {
-  //         console.error("Token validation failed:", error);
-  //         logout(); // Log out on error
-  //       }
-  //     };
+        // if (data.user) {
+        //   setUser(data.user); // Update the user context if the token is valid
+        // } else {
+        //   logout(); // Token is invalid, so log out the user
+        // }
+      } catch (error) {
+        logout();
+        console.log(error);
+        console.error("Token validation failed:", error);
+        // logout(); // Log out on error
+      }
+    };
 
-  //     validateToken();
-  //   }, []);
+    validateToken();
+  }, []);
 
   const login = async ({
     email,
@@ -108,7 +106,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const userData = (await response.json()) as Access;
         console.log(userData);
         setUser(userData);
-        setToken(userData.accessToken);
 
         return { success: true };
       } else {
@@ -127,17 +124,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       await fetch("http://localhost:5003/api/user/logout", {
         credentials: "include"
       });
-    //   console.log(res);
+      //   console.log(res);
       setUser(null);
-      navigate("/", { replace: true });
+      navigate("/");
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
+      navigate("/");
       console.error("Logout failed");
     }
   };
 
   return (
-    <AuthContext.Provider value={{ token, user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

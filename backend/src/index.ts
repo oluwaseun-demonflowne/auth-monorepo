@@ -18,7 +18,7 @@ app.use(express.json());
 // @ts-expect-error
 app.get("/", (_req: Request, res: Response) => res.send("Hello World!"));
 app.use("/api/user", userRouter);
-app.use("/api/refresh", refreshTokenRouter);
+app.use("/api/refresh",  refreshTokenRouter);
 
 app.listen(PORT, async () => {
   try {

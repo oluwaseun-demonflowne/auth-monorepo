@@ -16,7 +16,7 @@ export const setTokens = (
     { expiresIn: "30s" }
   );
   const refreshToken = jwt.sign(
-    { email: user.email },
+    { email: user.email, role: user.role },
     process.env.REFRESH_TOKEN_SECRET!,
     { expiresIn: "1d" }
   );
@@ -25,7 +25,14 @@ export const setTokens = (
     httpOnly: true,
     sameSite: "strict",
     // secure: true ,    taking it out for thunder client ,has issue with it
-    maxAge: 24 * 60 * 60 * 1000,
+    maxAge: 24 * 60 * 60 * 1000
+    // expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
+  });
+  res.cookie("sessionticket", accessToken, {
+    httpOnly: true,
+    sameSite: "strict",
+    // secure: true ,    taking it out for thunder client ,has issue with it
+    maxAge: 30 * 1000
     // expires: new Date(Date.now() + 24 * 60 * 60 * 1000)
   });
   res.status(200).json({ accessToken, ...userData });

@@ -12,10 +12,10 @@ export async function logout(
     return;
   }
 
-  res.clearCookie("ticket");
+  res.clearCookie("session-ticket");
   // , {
   //   httpOnly: true,
-  //   sameSite: "strict"
+  //   sameSite: "strict"s
   //   // secure: true ,    taking it out for thunder client ,has issue with it
   //   // secure: true
   // }); // secure: true = only serves on http
